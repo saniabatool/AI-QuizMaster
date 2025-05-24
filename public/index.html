@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI QuizMaster (Basic)</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 20px;
+      }
+      h1 {
+        color: #333;
+      }
+      textarea {
+        width: 80%;
+        height: 150px;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      #quizOutput {
+        margin-top: 20px;
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+      }
+
+      /* ... existing styles ... */
+      .question-block {
+        background-color: #f9f9f9;
+        border: 1px solid #e0e0e0;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+      }
+      .question-block h4 {
+        margin-top: 0;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>AI QuizMaster</h1>
+
+    <h2>Input Text for Quiz Generation:</h2>
+    <textarea id="inputText" placeholder="Paste your text here..."></textarea>
+    <br />
+    <button id="generateQuizBtn">Generate Quiz</button>
+
+    <div id="quizOutput">
+      <h3>Generated Quiz:</h3>
+      <p id="message"></p>
+      <div id="questionsContainer"></div>
+    </div>
+
+    <script>
+  document
+    .getElementById("generateQuizBtn")
+    .addEventListener("click", async () => {
+      const inputText = document.getElementById("inputText").value;
+      const messageElement = document.getElementById("message");
+      const questionsContainer =
+        document.getElementById("questionsContainer");
+
+      if (!inputText.trim()) {
+        messageElement.textContent =
+          "Please enter some text to generate a quiz.";
+        return;
+      }
+
+      messageElement.textContent = "Generating quiz... Please wait.";
+      questionsContainer.innerHTML = ""; // Clear previous questions
+
+      try {
+        const response = await fetch("/generate-quiz", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ textInput: inputText }), // <--- CORRECTED LINE HERE
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          messageElement.textContent = "Quiz generated successfully!";
+
+          // --- NEW PARSING LOGIC HERE ---
+          const rawQuizText = data.quizText;
+          const questionBlocks = rawQuizText
+            .split("\n\n")
+            .filter((block) => block.trim() !== "");
+
+          questionBlocks.forEach((block, index) => {
+            const questionDiv = document.createElement("div");
+            questionDiv.classList.add("question-block"); // Add a class for styling
+            questionDiv.innerHTML = `<h4>Question ${index + 1}:</h4>`;
+
+            // Simple parsing based on the format we asked OpenAI for
+            if (block.startsWith("MCQ:")) {
+              const lines = block.split("\n");
+              const question = lines[0].replace("MCQ: ", "");
+              const options = lines.slice(1, lines.length - 1).join("<br>");
+              const answer = lines[lines.length - 1].replace(
+                "Answer: ",
+                ""
+              );
+
+              questionDiv.innerHTML += `<p>${question}</p>`;
+              questionDiv.innerHTML += `<p>${options}</p>`;
+              questionDiv.innerHTML += `<p style="font-weight: bold; color: green;">Correct Answer: ${answer}</p>`;
+            } else if (block.startsWith("TF:")) {
+              const parts = block.split("\n");
+              const statement = parts[0].replace("TF: ", "");
+              const answer = parts[1].replace("Answer: ", "");
+
+              questionDiv.innerHTML += `<p>${statement}</p>`;
+              questionDiv.innerHTML += `<p style="font-weight: bold; color: green;">Answer: ${answer}</p>`;
+            } else if (block.startsWith("SA:")) {
+              const parts = block.split("\n");
+              const question = parts[0].replace("SA: ", "");
+              const answer = parts[1].replace("Answer: ", "");
+
+              questionDiv.innerHTML += `<p>${question}</p>`;
+              questionDiv.innerHTML += `<p style="font-weight: bold; color: green;">Expected Answer: ${answer}</p>`;
+            } else {
+              // Fallback for any unparsed content
+              questionDiv.innerHTML += `<p>Could not parse: <pre>${block}</pre></p>`;
+            }
+            questionsContainer.appendChild(questionDiv);
+          });
+          // --- END NEW PARSING LOGIC ---
+        } else {
+          messageElement.textContent = `Error: ${
+            data.error || "Unknown error"
+          }`;
+          console.error("Server Error:", data.error);
+        }
+      } catch (error) {
+        console.error("Network or client-side Error:", error);
+        messageElement.textContent =
+          "Network error or problem connecting to server.";
+      }
+    });
+</script>
+  </body>
+</html>
