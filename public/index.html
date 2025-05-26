@@ -35,7 +35,7 @@
         padding-top: 20px;
       }
 
-      /* ... existing styles ... */
+      
       .question-block {
         background-color: #f9f9f9;
         border: 1px solid #e0e0e0;
@@ -79,7 +79,7 @@
       }
 
       messageElement.textContent = "Generating quiz... Please wait.";
-      questionsContainer.innerHTML = ""; // Clear previous questions
+      questionsContainer.innerHTML = ""; 
 
       try {
         const response = await fetch("/generate-quiz", {
@@ -87,7 +87,7 @@
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ textInput: inputText }), // <--- CORRECTED LINE HERE
+          body: JSON.stringify({ textInput: inputText }),
         });
 
         const data = await response.json();
@@ -95,7 +95,7 @@
         if (response.ok) {
           messageElement.textContent = "Quiz generated successfully!";
 
-          // --- NEW PARSING LOGIC HERE ---
+         
           const rawQuizText = data.quizText;
           const questionBlocks = rawQuizText
             .split("\n\n")
@@ -103,10 +103,10 @@
 
           questionBlocks.forEach((block, index) => {
             const questionDiv = document.createElement("div");
-            questionDiv.classList.add("question-block"); // Add a class for styling
+            questionDiv.classList.add("question-block"); 
             questionDiv.innerHTML = `<h4>Question ${index + 1}:</h4>`;
 
-            // Simple parsing based on the format we asked OpenAI for
+            
             if (block.startsWith("MCQ:")) {
               const lines = block.split("\n");
               const question = lines[0].replace("MCQ: ", "");
@@ -134,12 +134,12 @@
               questionDiv.innerHTML += `<p>${question}</p>`;
               questionDiv.innerHTML += `<p style="font-weight: bold; color: green;">Expected Answer: ${answer}</p>`;
             } else {
-              // Fallback for any unparsed content
+              
               questionDiv.innerHTML += `<p>Could not parse: <pre>${block}</pre></p>`;
             }
             questionsContainer.appendChild(questionDiv);
           });
-          // --- END NEW PARSING LOGIC ---
+          
         } else {
           messageElement.textContent = `Error: ${
             data.error || "Unknown error"

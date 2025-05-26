@@ -1,4 +1,4 @@
-// Load environment variables from .env file
+
 require('dotenv').config();
 
 const express = require('express');
@@ -8,17 +8,16 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 const app = express();
 const port = 3000;
 
-// Initialize Gemini Generative AI client
-// Make sure your .env file has GEMINI_API_KEY=YOUR_API_KEY
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// Middleware to parse JSON bodies
+
 app.use(express.json());
 
-// Serve static files from the 'public' directory
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-// New route for AI quiz generation
+
 app.post('/generate-quiz', async (req, res) => {
     const textInput = req.body.textInput;
 
@@ -32,9 +31,10 @@ app.post('/generate-quiz', async (req, res) => {
     }
 
     try {
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
-        // This is the updated and detailed prompt for Gemini
+
+        
         const prompt = `You are a helpful assistant that generates quizzes.
 For Multiple Choice Questions (MCQ), format as:
 MCQ: [Question Text]
@@ -59,7 +59,7 @@ Now, generate 2 Multiple Choice Questions, 1 True/False question, and 1 Short An
 Text:
 ${textInput}
 
-Quiz:`; // END OF PROMPT STRING
+Quiz:`; 
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
@@ -71,7 +71,7 @@ Quiz:`; // END OF PROMPT STRING
 
     } catch (error) {
         console.error('Error calling Gemini API:', error);
-        // Check for specific error details from Gemini
+        
         if (error.response && error.response.status === 429) {
             res.status(429).json({ error: 'Gemini API Quota Exceeded. Please check your Google AI Studio billing/usage.' });
         } else {
@@ -80,7 +80,7 @@ Quiz:`; // END OF PROMPT STRING
     }
 });
 
-// Start the server
+
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
