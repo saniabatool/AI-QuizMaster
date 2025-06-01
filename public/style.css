@@ -1,0 +1,575 @@
+/* CSS Variables for Themes */
+:root {
+  /* DEFAULT THEME: "Serene Study" (Refined Dark Theme) */
+  --bg-color-body: #252d3a; /* Deep, muted blue-gray for the body */
+  --bg-color-container: #2e394a; /* Slightly lighter, warm dark blue-gray for main content */
+  --bg-color-input: #3a4759; /* A bit lighter for inputs/textareas, subtly distinct */
+  --bg-color-question-block: #354152; /* Background for individual question blocks, slightly lighter than container */
+  --bg-color-message: #4CAF50; /* A pleasant green for success/info messages */
+  --bg-color-exported-text: #212833; /* Very dark, almost black-blue for exported text area */
+
+  --text-color-body: #e0e6eb; /* Soft off-white for general text */
+  --text-color-heading-main: #73b3ff; /* A rich, calming blue for main headings */
+  --text-color-heading-shadow: 0 0 10px rgba(115, 179, 255, 0.3); /* Subtle blue glow */
+  --text-color-heading-sub: #a1c8ed; /* Lighter blue for subheadings */
+  --text-color-question-number: #b4daff; /* Even lighter blue for question numbers */
+  --text-color-hint: #9da9b8; /* Muted medium gray for hints */
+  --text-color-general: #e0e6eb; /* Soft off-white */
+  --text-color-editable-input: #e0e6eb; /* Soft off-white for editable inputs */
+  --text-color-answer: #82E0AA; /* A gentle, inviting light green for answers */
+
+  --border-color-container: #4a5c70; /* Darker blue-gray border, blends well */
+  --border-color-input: #5c708c; /* Slightly lighter border for inputs */
+  --border-color-question-block: #50647c; /* Border for question blocks */
+  --border-color-answer: #72D299; /* Green border for answer */
+  --border-color-export-section: #73b3ff; /* Blue for export border */
+  --border-color-exported-text: #5c708c; /* Same as input border */
+
+  --shadow-container: 0 12px 30px rgba(0, 0, 0, 0.45); /* More pronounced, diffused dark shadow */
+  --shadow-input-inner: inset 0 1px 5px rgba(0, 0, 0, 0.4); /* Deeper inner shadow */
+  --shadow-message: 0 0 12px rgba(76, 175, 80, 0.4); /* Green glow for messages */
+  --shadow-block: 0 8px 22px rgba(0, 0, 0, 0.35); /* Diffused dark shadow for blocks */
+  --shadow-answer-glow: 0 0 10px rgba(130, 224, 170, 0.6); /* Pronounced green glow for answers */
+
+  --button-gradient: linear-gradient(45deg, #73b3ff, #4a90d9); /* Muted blue gradient */
+  --button-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  --button-hover-shadow: 0 9px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* "Clean Light" Theme (Alternative when toggled) */
+body.light-theme {
+  --bg-color-body: #f7f7f7;
+  --bg-color-container: #ffffff;
+  --bg-color-input: #ffffff;
+  --bg-color-question-block: #fcfcfc;
+  --bg-color-message: #e3f2fd;
+  --bg-color-exported-text: #fdfdfd;
+
+  --text-color-body: #333333;
+  --text-color-heading-main: #1976d2; /* Deeper blue for light theme headings */
+  --text-color-heading-shadow: none;
+  --text-color-heading-sub: #424242;
+  --text-color-question-number: #212121;
+  --text-color-hint: #757575;
+  --text-color-general: #333333;
+  --text-color-editable-input: #333333;
+  --text-color-answer: #388e3c; /* Darker green for light theme answers */
+
+  --border-color-container: #e0e0e0;
+  --border-color-input: #e0e0e0;
+  --border-color-question-block: #f0f0f0;
+  --border-color-answer: #66bb6a;
+  --border-color-export-section: #90caf9;
+  --border-color-exported-text: #e0e0e0;
+
+  --shadow-container: 0 3px 8px rgba(0, 0, 0, 0.09);
+  --shadow-input-inner: none;
+  --shadow-message: none;
+  --shadow-block: none;
+  --shadow-answer-glow: none;
+
+  --button-gradient: linear-gradient(45deg, #1976d2, #2196f3);
+  --button-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  --button-hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* General Body Styles */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background-color: var(--bg-color-body);
+  color: var(--text-color-body);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Main Container Styling */
+.container {
+  max-width: 1000px;
+  width: 100%;
+  background-color: var(--bg-color-container);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-container);
+  border: 1px solid var(--border-color-container);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Heading Styles */
+h1,
+h2,
+h3 {
+  color: var(--text-color-heading-main);
+  text-align: center;
+  text-shadow: var(--text-color-heading-shadow);
+  margin-bottom: 20px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+h1 {
+  font-size: 3.2em;
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+h2 {
+  color: var(--text-color-heading-sub);
+  font-size: 1.8em;
+  margin-top: 25px;
+}
+h3 {
+  color: var(--text-color-heading-sub);
+  font-size: 1.5em;
+  margin-top: 20px;
+}
+
+/* Input Section Styling */
+.input-section {
+  margin-bottom: 20px;
+  text-align: center;
+}
+textarea#inputText {
+  width: 100%;
+  height: 180px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: var(--bg-color-input);
+  color: var(--text-color-editable-input);
+  border: 1px solid var(--border-color-input);
+  border-radius: 10px;
+  font-size: 1.1em;
+  box-sizing: border-box;
+  resize: vertical;
+  box-shadow: var(--shadow-input-inner);
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease;
+  line-height: 1.6;
+}
+textarea#inputText::placeholder {
+  color: var(--text-color-hint);
+}
+textarea#inputText:focus {
+  outline: none;
+  border-color: var(--text-color-heading-main);
+  box-shadow: var(--shadow-input-inner), 0 0 0 3px rgba(115, 179, 255, 0.2);
+}
+
+/* Button Styling */
+button {
+  padding: 12px 25px;
+  background: var(--button-gradient);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.05em;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-right: 12px;
+  box-shadow: var(--button-shadow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+button:last-child {
+  margin-right: 0;
+}
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--button-hover-shadow);
+  filter: brightness(1.05);
+}
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  filter: none;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.7;
+}
+
+/* Message Display Styling */
+#message {
+  margin-top: 25px;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 500;
+  background-color: var(--bg-color-message);
+  color: var(--text-color-general);
+  box-shadow: var(--shadow-message);
+  transition: background-color 0.3s ease, color 0.3s ease,
+    box-shadow 0.3s ease;
+  border: 1px solid var(--border-color-answer);
+}
+
+/* Quiz Output & Questions Container Styling */
+#quizOutput {
+  margin-top: 40px;
+  border-top: 1px solid var(--border-color-container);
+  padding-top: 30px;
+}
+#questionsContainer {
+  margin-top: 20px;
+}
+
+/* Individual Question Block Styling */
+.question-block {
+  background-color: var(--bg-color-question-block);
+  border: 1px solid var(--border-color-question-block);
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: var(--shadow-block);
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.question-block h4 {
+  margin-top: 0;
+  color: var(--text-color-question-number);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-shadow: none;
+  margin-bottom: 15px;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+.question-block h4 span {
+  font-size: 0.8em;
+  color: var(--text-color-hint);
+  font-weight: normal;
+}
+.question-block p {
+  margin-bottom: 12px;
+  margin-top: 12px;
+  color: var(--text-color-general);
+  line-height: 1.6;
+}
+.question-block p strong {
+  color: var(--text-color-question-number);
+}
+.question-block ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.question-block ul li {
+  padding: 8px 0;
+  color: var(--text-color-general);
+  border-bottom: 1px dotted var(--border-color-question-block);
+  transition: color 0.3s ease;
+}
+.question-block ul li:last-child {
+  border-bottom: none;
+}
+.question-block ul li span[style*="color: var(--text-color-answer)"] {
+  font-weight: 500;
+}
+
+/* Styles for editable textareas/inputs within questions */
+.question-block textarea,
+.question-block input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  background-color: var(--bg-color-input);
+  color: var(--text-color-editable-input);
+  border: 1px solid var(--border-color-input);
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 1em;
+  resize: vertical;
+  box-shadow: var(--shadow-input-inner);
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease;
+  line-height: 1.5;
+}
+.question-block textarea:focus,
+.question-block input[type="text"]:focus {
+  outline: none;
+  border-color: var(--text-color-heading-main);
+  box-shadow: var(--shadow-input-inner), 0 0 0 3px rgba(115, 179, 255, 0.2);
+}
+
+/* Specific style for single-line inputs if you keep them, though textareas are generally better for editing */
+.question-block input[type="text"] {
+  height: auto;
+}
+
+/* Style for answer textareas to differentiate */
+.question-block .edit-answer-text {
+  color: var(--text-color-answer);
+  font-weight: 600;
+  border-color: var(--border-color-answer);
+  box-shadow: var(--shadow-answer-glow);
+  transition: color 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* NEW CSS FOR EDITING INTERFACE */
+.edit-mode .display-mode {
+  display: none;
+}
+.display-mode {
+  display: block;
+}
+.edit-mode .edit-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.edit-form {
+  display: none;
+  gap: 10px;
+}
+
+/* Edit form specific styling */
+.edit-form textarea {
+  margin-bottom: 10px;
+}
+.edit-form label {
+  color: var(--text-color-hint);
+  font-size: 0.9em;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  display: block;
+}
+.edit-form .edit-options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.edit-form .option-item {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-color-input);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color-input);
+  width: 100%;
+  box-sizing: border-box;
+}
+.edit-form .option-item input[type="radio"] {
+  margin-right: 12px;
+  flex-shrink: 0;
+  transform: scale(1.1);
+  accent-color: var(--text-color-heading-main);
+}
+.edit-form .option-item .option-text {
+  flex-grow: 1;
+  border: none;
+  background: transparent;
+  color: var(--text-color-editable-input);
+  padding: 5px;
+  line-height: 1.4;
+}
+.edit-form .option-item .option-text:focus {
+  outline: none;
+}
+.edit-form .remove-option-btn {
+  background-color: #EF5350; /* Red for remove */
+  color: white;
+  padding: 5px 10px;
+  margin-left: 10px;
+  font-size: 0.9em;
+  border-radius: 6px;
+  flex-shrink: 0;
+  box-shadow: none;
+  transform: none;
+  margin-right: 0;
+}
+.edit-form .remove-option-btn:hover {
+  background-color: #E53935;
+}
+.edit-form .action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  justify-content: flex-end;
+  width: 100%;
+}
+.edit-form .action-buttons button {
+  margin-right: 0;
+  padding: 10px 20px;
+  font-size: 1em;
+  box-shadow: var(--button-shadow);
+}
+.edit-form .save-edited-question-btn {
+  background: linear-gradient(45deg, #82E0AA, #4CAF50); /* Green gradient for save */
+}
+.edit-form .save-edited-question-btn:hover {
+  background: linear-gradient(45deg, #72D299, #43A047);
+}
+.edit-form .cancel-edit-btn {
+  background: linear-gradient(45deg, #90A4AE, #78909C); /* Gray gradient for cancel */
+}
+.edit-form .cancel-edit-btn:hover {
+  background: linear-gradient(45deg, #78909C, #607D8B);
+}
+.edit-form .add-option-btn,
+.edit-form .generate-options-btn {
+  background: linear-gradient(45deg, #4DD0E1, #00BCD4); /* Cyan gradient */
+  margin-top: 15px;
+  margin-bottom: 10px;
+  width: auto;
+  align-self: flex-start;
+  padding: 10px 20px;
+  font-size: 1em;
+  box-shadow: var(--button-shadow);
+  margin-right: 15px;
+}
+.edit-form .generate-options-btn {
+  background: linear-gradient(45deg, #73b3ff, #4a90d9); /* Blue gradient for generate */
+}
+.edit-form .add-option-btn:hover {
+  background: linear-gradient(45deg, #26C6DA, #00ACC1);
+}
+.edit-form .generate-options-btn:hover {
+  background: linear-gradient(45deg, #5CA0ED, #3A7CD3);
+}
+.edit-form #editLoadingIndicator {
+  margin-top: 15px;
+  font-style: italic;
+  color: var(--text-color-hint);
+  text-align: center;
+  width: 100%;
+}
+
+/* Export Section Styling */
+#exportSection {
+  background-color: var(--bg-color-container);
+  border: 1px solid var(--border-color-export-section);
+  border-radius: 15px;
+  padding: 25px;
+  margin-top: 40px;
+  box-shadow: var(--shadow-block);
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+#exportSection h3 {
+  color: var(--text-color-heading-main);
+  text-shadow: none;
+  margin-bottom: 20px;
+}
+#exportedQuizText {
+  background-color: var(--bg-color-exported-text);
+  border: 1px solid var(--border-color-exported-text);
+  padding: 15px;
+  font-size: 0.98em;
+  line-height: 1.7;
+  color: var(--text-color-general);
+  border-radius: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+#exportedQuizText:focus {
+  outline: none;
+  border-color: var(--text-color-heading-main);
+  box-shadow: 0 0 0 3px rgba(115, 179, 255, 0.2);
+}
+
+/* Theme Toggle Button */
+#themeToggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 18px;
+  background-color: #607d8b; /* Muted blue-gray for the toggle */
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 500;
+  z-index: 1000;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+#themeToggle:hover {
+  background-color: #546a78;
+  transform: none;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+/* Adjust toggle text based on active theme */
+body:not(.light-theme) #themeToggle { /* When default dark theme is active */
+  background-color: #607d8b; /* A consistent muted blue-gray */
+  color: white;
+}
+body.light-theme #themeToggle { /* When light theme is active */
+  background-color: #9e9e9e; /* A lighter gray for light theme */
+  color: white;
+}
+body:not(.light-theme) #themeToggle:hover {
+  background-color: #546a78;
+}
+body.light-theme #themeToggle:hover {
+  background-color: #888;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 25px;
+    margin-top: 15px;
+  }
+  h1 {
+    font-size: 2.5em;
+  }
+  h2 {
+    font-size: 1.6em;
+  }
+  h3 {
+    font-size: 1.3em;
+  }
+  button {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+  button:last-child {
+    margin-bottom: 0;
+  }
+  .input-section button {
+    margin-bottom: 15px;
+  }
+  .input-section button:last-child {
+    margin-bottom: 0;
+  }
+  .edit-form .action-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .edit-form .action-buttons button {
+    width: 100%;
+  }
+  .edit-form .add-option-btn,
+  .edit-form .generate-options-btn {
+    width: 100%;
+    margin-right: 0;
+  }
+  #themeToggle {
+    top: 15px;
+    right: 15px;
+    padding: 8px 12px;
+    font-size: 0.85em;
+  }
+}
