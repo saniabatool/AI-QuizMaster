@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI QuizMaster</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <button id="themeToggle">Switch to Light Theme</button>
@@ -15,10 +15,20 @@
       <h2>Input Text for Quiz Generation:</h2>
       <div class="input-section">
         <textarea id="inputText" placeholder="Paste your text here..."></textarea>
+        </div>
+
+      <div class="file-upload-section">
+        <label for="fileInput">Or upload a document:</label>
+        <input type="file" id="fileInput" accept=".txt,.pdf" />
+        <label for="fileInput" class="custom-file-upload">Choose File</label>
+        <p id="fileNameDisplay">No file chosen</p>
+      </div>
+      <div class="input-section">
         <button id="generateQuizBtn">Generate Quiz</button>
         <button id="exportQuizBtn">Export Quiz</button>
         <button id="clearAllBtn">Clear All</button>
       </div>
+
 
       <div id="quizOutput">
         <h3>Generated Quiz:</h3>

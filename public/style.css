@@ -324,7 +324,7 @@ button:disabled {
     box-shadow 0.3s ease;
 }
 
-/* NEW CSS FOR EDITING INTERFACE */
+/* --- CSS FOR EDITING INTERFACE --- */
 .edit-mode .display-mode {
   display: none;
 }
@@ -338,7 +338,7 @@ button:disabled {
 }
 .edit-form {
   display: none;
-  gap: 10px;
+  gap: 10px; /* This is good for vertical spacing */
 }
 
 /* Edit form specific styling */
@@ -354,8 +354,8 @@ button:disabled {
 }
 .edit-form .edit-options-container {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-direction: column; /* Fixed: Ensure options stack vertically */
+  gap: 8px; /* Spacing between options */
 }
 .edit-form .option-item {
   display: flex;
@@ -403,7 +403,7 @@ button:disabled {
   display: flex;
   gap: 15px;
   margin-top: 20px;
-  justify-content: flex-end;
+  justify-content: flex-end; /* Align to the right */
   width: 100%;
 }
 .edit-form .action-buttons button {
@@ -413,20 +413,20 @@ button:disabled {
   box-shadow: var(--button-shadow);
 }
 .edit-form .save-edited-question-btn {
-  background: linear-gradient(45deg, #82E0AA, #4CAF50); /* Green gradient for save */
+  background: linear-gradient(45deg, #82E0AA, #4CAF50);
 }
 .edit-form .save-edited-question-btn:hover {
   background: linear-gradient(45deg, #72D299, #43A047);
 }
 .edit-form .cancel-edit-btn {
-  background: linear-gradient(45deg, #90A4AE, #78909C); /* Gray gradient for cancel */
+  background: linear-gradient(45deg, #90A4AE, #78909C);
 }
 .edit-form .cancel-edit-btn:hover {
   background: linear-gradient(45deg, #78909C, #607D8B);
 }
 .edit-form .add-option-btn,
 .edit-form .generate-options-btn {
-  background: linear-gradient(45deg, #4DD0E1, #00BCD4); /* Cyan gradient */
+  background: linear-gradient(45deg, #4DD0E1, #00BCD4);
   margin-top: 15px;
   margin-bottom: 10px;
   width: auto;
@@ -434,10 +434,10 @@ button:disabled {
   padding: 10px 20px;
   font-size: 1em;
   box-shadow: var(--button-shadow);
-  margin-right: 15px;
+  /* Removed margin-right to prevent horizontal issues */
 }
 .edit-form .generate-options-btn {
-  background: linear-gradient(45deg, #73b3ff, #4a90d9); /* Blue gradient for generate */
+  background: linear-gradient(45deg, #73b3ff, #4a90d9);
 }
 .edit-form .add-option-btn:hover {
   background: linear-gradient(45deg, #26C6DA, #00ACC1);
@@ -452,6 +452,66 @@ button:disabled {
   text-align: center;
   width: 100%;
 }
+
+/* --- File Upload Section Styling --- */
+.file-upload-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: var(--bg-color-input);
+  border: 1px solid var(--border-color-input);
+  border-radius: 10px;
+  box-shadow: var(--shadow-input-inner);
+}
+
+.file-upload-section label {
+  color: var(--text-color-hint);
+  font-size: 1.1em;
+  flex-shrink: 0;
+}
+
+/* Hide the default file input button */
+#fileInput {
+  display: none;
+}
+
+/* Style the custom file input button (the label associated with fileInput) */
+.custom-file-upload {
+  display: inline-block;
+  padding: 12px 25px; /* Match other buttons' padding */
+  background: var(--button-gradient); /* Use the main button gradient variable */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.05em; /* Match other buttons' font size */
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: var(--button-shadow); /* Use the main button shadow variable */
+  flex-shrink: 0;
+}
+
+.custom-file-upload:hover {
+  transform: translateY(-2px); /* Match other buttons' hover effect */
+  box-shadow: var(--button-hover-shadow); /* Match other buttons' hover shadow */
+  filter: brightness(1.05);
+}
+
+/* Style for the file name display */
+#fileNameDisplay {
+  color: var(--text-color-general);
+  font-size: 1em;
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 5px 0;
+  margin-left: 5px;
+}
+
 
 /* Export Section Styling */
 #exportSection {
@@ -565,6 +625,21 @@ body.light-theme #themeToggle:hover {
   .edit-form .generate-options-btn {
     width: 100%;
     margin-right: 0;
+  }
+  /* Responsive for file upload section */
+  .file-upload-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .custom-file-upload {
+    width: 100%;
+    text-align: center;
+  }
+  #fileNameDisplay {
+    width: 100%;
+    text-align: left;
+    margin-left: 0;
+    margin-top: 10px;
   }
   #themeToggle {
     top: 15px;
