@@ -1,42 +1,42 @@
-/* CSS Variables for Themes */
+
 :root {
-  /* DEFAULT THEME: "Serene Study" (Refined Dark Theme) */
-  --bg-color-body: #252d3a; /* Deep, muted blue-gray for the body */
-  --bg-color-container: #2e394a; /* Slightly lighter, warm dark blue-gray for main content */
-  --bg-color-input: #3a4759; /* A bit lighter for inputs/textareas, subtly distinct */
-  --bg-color-question-block: #354152; /* Background for individual question blocks, slightly lighter than container */
-  --bg-color-message: #4CAF50; /* A pleasant green for success/info messages */
-  --bg-color-exported-text: #212833; /* Very dark, almost black-blue for exported text area */
 
-  --text-color-body: #e0e6eb; /* Soft off-white for general text */
-  --text-color-heading-main: #73b3ff; /* A rich, calming blue for main headings */
-  --text-color-heading-shadow: 0 0 10px rgba(115, 179, 255, 0.3); /* Subtle blue glow */
-  --text-color-heading-sub: #a1c8ed; /* Lighter blue for subheadings */
-  --text-color-question-number: #b4daff; /* Even lighter blue for question numbers */
-  --text-color-hint: #9da9b8; /* Muted medium gray for hints */
-  --text-color-general: #e0e6eb; /* Soft off-white */
-  --text-color-editable-input: #e0e6eb; /* Soft off-white for editable inputs */
-  --text-color-answer: #82E0AA; /* A gentle, inviting light green for answers */
+  --bg-color-body: #252d3a; 
+  --bg-color-container: #2e394a; 
+  --bg-color-input: #3a4759;
+  --bg-color-question-block: #354152;
+  --bg-color-message: #4CAF50; 
+  --bg-color-exported-text: #212833; 
 
-  --border-color-container: #4a5c70; /* Darker blue-gray border, blends well */
-  --border-color-input: #5c708c; /* Slightly lighter border for inputs */
-  --border-color-question-block: #50647c; /* Border for question blocks */
-  --border-color-answer: #72D299; /* Green border for answer */
-  --border-color-export-section: #73b3ff; /* Blue for export border */
-  --border-color-exported-text: #5c708c; /* Same as input border */
+  --text-color-body: #e0e6eb; 
+  --text-color-heading-main: #73b3ff; 
+  --text-color-heading-shadow: 0 0 10px rgba(115, 179, 255, 0.3); 
+  --text-color-heading-sub: #a1c8ed; 
+  --text-color-question-number: #b4daff; 
+  --text-color-hint: #9da9b8;
+  --text-color-general: #e0e6eb;
+  --text-color-editable-input: #e0e6eb; 
+  --text-color-answer: #82E0AA; 
 
-  --shadow-container: 0 12px 30px rgba(0, 0, 0, 0.45); /* More pronounced, diffused dark shadow */
-  --shadow-input-inner: inset 0 1px 5px rgba(0, 0, 0, 0.4); /* Deeper inner shadow */
-  --shadow-message: 0 0 12px rgba(76, 175, 80, 0.4); /* Green glow for messages */
-  --shadow-block: 0 8px 22px rgba(0, 0, 0, 0.35); /* Diffused dark shadow for blocks */
-  --shadow-answer-glow: 0 0 10px rgba(130, 224, 170, 0.6); /* Pronounced green glow for answers */
+  --border-color-container: #4a5c70; 
+  --border-color-input: #5c708c; 
+  --border-color-question-block: #50647c; 
+  --border-color-answer: #72D299; 
+  --border-color-export-section: #73b3ff;
+  --border-color-exported-text: #5c708c; 
 
-  --button-gradient: linear-gradient(45deg, #73b3ff, #4a90d9); /* Muted blue gradient */
+  --shadow-container: 0 12px 30px rgba(0, 0, 0, 0.45); 
+  --shadow-input-inner: inset 0 1px 5px rgba(0, 0, 0, 0.4); 
+  --shadow-message: 0 0 12px rgba(76, 175, 80, 0.4); 
+  --shadow-block: 0 8px 22px rgba(0, 0, 0, 0.35); 
+  --shadow-answer-glow: 0 0 10px rgba(130, 224, 170, 0.6); 
+
+  --button-gradient: linear-gradient(45deg, #73b3ff, #4a90d9);
   --button-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
   --button-hover-shadow: 0 9px 25px rgba(0, 0, 0, 0.5);
 }
 
-/* "Clean Light" Theme (Alternative when toggled) */
+
 body.light-theme {
   --bg-color-body: #f7f7f7;
   --bg-color-container: #ffffff;
@@ -46,14 +46,14 @@ body.light-theme {
   --bg-color-exported-text: #fdfdfd;
 
   --text-color-body: #333333;
-  --text-color-heading-main: #1976d2; /* Deeper blue for light theme headings */
+  --text-color-heading-main: #1976d2;
   --text-color-heading-shadow: none;
   --text-color-heading-sub: #424242;
   --text-color-question-number: #212121;
   --text-color-hint: #757575;
   --text-color-general: #333333;
   --text-color-editable-input: #333333;
-  --text-color-answer: #388e3c; /* Darker green for light theme answers */
+  --text-color-answer: #388e3c; 
 
   --border-color-container: #e0e0e0;
   --border-color-input: #e0e0e0;
@@ -73,7 +73,7 @@ body.light-theme {
   --button-hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* General Body Styles */
+
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
@@ -90,7 +90,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Main Container Styling */
+
 .container {
   max-width: 1000px;
   width: 100%;
@@ -106,7 +106,7 @@ body {
     border-color 0.3s ease;
 }
 
-/* Heading Styles */
+
 h1,
 h2,
 h3 {
@@ -134,7 +134,7 @@ h3 {
   margin-top: 20px;
 }
 
-/* Input Section Styling */
+
 .input-section {
   margin-bottom: 20px;
   text-align: center;
@@ -165,7 +165,7 @@ textarea#inputText:focus {
   box-shadow: var(--shadow-input-inner), 0 0 0 3px rgba(115, 179, 255, 0.2);
 }
 
-/* Button Styling */
+
 button {
   padding: 12px 25px;
   background: var(--button-gradient);
@@ -203,7 +203,7 @@ button:disabled {
   opacity: 0.7;
 }
 
-/* Message Display Styling */
+
 #message {
   margin-top: 25px;
   padding: 15px;
@@ -218,7 +218,7 @@ button:disabled {
   border: 1px solid var(--border-color-answer);
 }
 
-/* Quiz Output & Questions Container Styling */
+
 #quizOutput {
   margin-top: 40px;
   border-top: 1px solid var(--border-color-container);
@@ -228,7 +228,7 @@ button:disabled {
   margin-top: 20px;
 }
 
-/* Individual Question Block Styling */
+
 .question-block {
   background-color: var(--bg-color-question-block);
   border: 1px solid var(--border-color-question-block);
@@ -283,7 +283,7 @@ button:disabled {
   font-weight: 500;
 }
 
-/* Styles for editable textareas/inputs within questions */
+
 .question-block textarea,
 .question-block input[type="text"] {
   width: 100%;
@@ -309,12 +309,12 @@ button:disabled {
   box-shadow: var(--shadow-input-inner), 0 0 0 3px rgba(115, 179, 255, 0.2);
 }
 
-/* Specific style for single-line inputs if you keep them, though textareas are generally better for editing */
+
 .question-block input[type="text"] {
   height: auto;
 }
 
-/* Style for answer textareas to differentiate */
+
 .question-block .edit-answer-text {
   color: var(--text-color-answer);
   font-weight: 600;
@@ -324,7 +324,7 @@ button:disabled {
     box-shadow 0.3s ease;
 }
 
-/* --- CSS FOR EDITING INTERFACE --- */
+
 .edit-mode .display-mode {
   display: none;
 }
@@ -338,10 +338,10 @@ button:disabled {
 }
 .edit-form {
   display: none;
-  gap: 10px; /* This is good for vertical spacing */
+  gap: 10px; 
 }
 
-/* Edit form specific styling */
+
 .edit-form textarea {
   margin-bottom: 10px;
 }
@@ -354,8 +354,8 @@ button:disabled {
 }
 .edit-form .edit-options-container {
   display: flex;
-  flex-direction: column; /* Fixed: Ensure options stack vertically */
-  gap: 8px; /* Spacing between options */
+  flex-direction: column; 
+  gap: 8px; 
 }
 .edit-form .option-item {
   display: flex;
@@ -385,7 +385,7 @@ button:disabled {
   outline: none;
 }
 .edit-form .remove-option-btn {
-  background-color: #EF5350; /* Red for remove */
+  background-color: #EF5350; 
   color: white;
   padding: 5px 10px;
   margin-left: 10px;
@@ -403,7 +403,7 @@ button:disabled {
   display: flex;
   gap: 15px;
   margin-top: 20px;
-  justify-content: flex-end; /* Align to the right */
+  justify-content: flex-end; 
   width: 100%;
 }
 .edit-form .action-buttons button {
@@ -434,7 +434,7 @@ button:disabled {
   padding: 10px 20px;
   font-size: 1em;
   box-shadow: var(--button-shadow);
-  /* Removed margin-right to prevent horizontal issues */
+ 
 }
 .edit-form .generate-options-btn {
   background: linear-gradient(45deg, #73b3ff, #4a90d9);
@@ -453,7 +453,7 @@ button:disabled {
   width: 100%;
 }
 
-/* --- File Upload Section Styling --- */
+
 .file-upload-section {
   display: flex;
   flex-wrap: wrap;
@@ -473,34 +473,33 @@ button:disabled {
   flex-shrink: 0;
 }
 
-/* Hide the default file input button */
 #fileInput {
   display: none;
 }
 
-/* Style the custom file input button (the label associated with fileInput) */
+
 .custom-file-upload {
   display: inline-block;
-  padding: 12px 25px; /* Match other buttons' padding */
-  background: var(--button-gradient); /* Use the main button gradient variable */
+  padding: 12px 25px;
+  background: var(--button-gradient); 
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 1.05em; /* Match other buttons' font size */
+  font-size: 1.05em;
   font-weight: 600;
   transition: all 0.3s ease;
-  box-shadow: var(--button-shadow); /* Use the main button shadow variable */
+  box-shadow: var(--button-shadow); 
   flex-shrink: 0;
 }
 
 .custom-file-upload:hover {
-  transform: translateY(-2px); /* Match other buttons' hover effect */
-  box-shadow: var(--button-hover-shadow); /* Match other buttons' hover shadow */
+  transform: translateY(-2px);
+  box-shadow: var(--button-hover-shadow); 
   filter: brightness(1.05);
 }
 
-/* Style for the file name display */
+
 #fileNameDisplay {
   color: var(--text-color-general);
   font-size: 1em;
@@ -513,7 +512,7 @@ button:disabled {
 }
 
 
-/* Export Section Styling */
+
 #exportSection {
   background-color: var(--bg-color-container);
   border: 1px solid var(--border-color-export-section);
@@ -546,13 +545,13 @@ button:disabled {
   box-shadow: 0 0 0 3px rgba(115, 179, 255, 0.2);
 }
 
-/* Theme Toggle Button */
+
 #themeToggle {
   position: fixed;
   top: 20px;
   right: 20px;
   padding: 10px 18px;
-  background-color: #607d8b; /* Muted blue-gray for the toggle */
+  background-color: #607d8b;
   color: white;
   border: none;
   border-radius: 25px;
@@ -568,13 +567,13 @@ button:disabled {
   transform: none;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
-/* Adjust toggle text based on active theme */
-body:not(.light-theme) #themeToggle { /* When default dark theme is active */
-  background-color: #607d8b; /* A consistent muted blue-gray */
+
+body:not(.light-theme) #themeToggle { 
+  background-color: #607d8b; 
   color: white;
 }
-body.light-theme #themeToggle { /* When light theme is active */
-  background-color: #9e9e9e; /* A lighter gray for light theme */
+body.light-theme #themeToggle {
+  background-color: #9e9e9e; 
   color: white;
 }
 body:not(.light-theme) #themeToggle:hover {
@@ -585,7 +584,7 @@ body.light-theme #themeToggle:hover {
 }
 
 
-/* Responsive Adjustments */
+
 @media (max-width: 768px) {
   .container {
     padding: 25px;
@@ -626,7 +625,7 @@ body.light-theme #themeToggle:hover {
     width: 100%;
     margin-right: 0;
   }
-  /* Responsive for file upload section */
+  
   .file-upload-section {
     flex-direction: column;
     align-items: flex-start;

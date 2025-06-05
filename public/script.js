@@ -1,4 +1,4 @@
-// Theme switching logic
+
 const themeToggle = document.getElementById("themeToggle");
 const body = document.body;
 
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (savedTheme) {
         setTheme(savedTheme);
     } else {
-        // Default to dark theme if no preference is saved
+        
         setTheme("dark");
     }
 });
@@ -32,30 +32,30 @@ themeToggle.addEventListener("click", () => {
     }
 });
 
-// --- NEW: File Upload Logic ---
-const fileInput = document.getElementById('fileInput'); // Ensure this ID exists in your index.html
-const fileNameDisplay = document.getElementById('fileNameDisplay'); // Ensure this ID exists in your index.html
-const inputTextarea = document.getElementById('inputText');
-const messageElement = document.getElementById('message'); // Get message element globally
 
-if (fileInput) { // Check if fileInput element exists (important if you're using an older index.html)
+const fileInput = document.getElementById('fileInput'); 
+const fileNameDisplay = document.getElementById('fileNameDisplay'); 
+const inputTextarea = document.getElementById('inputText');
+const messageElement = document.getElementById('message'); 
+
+if (fileInput) { 
     fileInput.addEventListener('change', async (event) => {
         const file = event.target.files[0];
         if (!file) {
             fileNameDisplay.textContent = 'No file chosen';
-            inputTextarea.value = ''; // Clear text area if no file selected
+            inputTextarea.value = '';
             return;
         }
 
         fileNameDisplay.textContent = `Selected: ${file.name}`;
         messageElement.textContent = `Uploading "${file.name}" and extracting text...`;
-        inputTextarea.value = ''; // Clear any existing text input
+        inputTextarea.value = ''; 
 
         const formData = new FormData();
-        formData.append('document', file); // 'document' must match the field name in your Multer setup in index.js
+        formData.append('document', file); 
 
         try {
-            const response = await fetch('/upload-document', { // This endpoint needs to be handled by your Node.js server
+            const response = await fetch('/upload-document', { 
                 method: 'POST',
                 body: formData,
             });
@@ -63,7 +63,7 @@ if (fileInput) { // Check if fileInput element exists (important if you're using
             const data = await response.json();
 
             if (response.ok) {
-                inputTextarea.value = data.textContent; // Populate textarea with extracted text
+                inputTextarea.value = data.textContent; 
                 messageElement.textContent = `Text extracted from "${data.fileName}". Ready to generate quiz!`;
             } else {
                 messageElement.textContent = `Error processing file: ${data.error}`;
@@ -77,7 +77,7 @@ if (fileInput) { // Check if fileInput element exists (important if you're using
 }
 
 
-// --- Existing AI QuizMaster JavaScript below ---
+
 document
     .getElementById("generateQuizBtn")
     .addEventListener("click", async () => {
@@ -87,7 +87,7 @@ document
             document.getElementById("questionsContainer");
         const exportSection = document.getElementById("exportSection");
 
-        // Updated check for input or uploaded file
+       
         if (!inputText.trim()) {
             messageElement.textContent =
                 "Please enter some text or upload a document to generate a quiz.";
@@ -136,7 +136,7 @@ document
         }
     });
 
-// --- UPDATED: Function to render a single question block (display or edit mode) ---
+
 function renderQuestionBlock(id, blockContent, questionNumber) {
     const questionsContainer =
         document.getElementById("questionsContainer");
@@ -150,7 +150,7 @@ function renderQuestionBlock(id, blockContent, questionNumber) {
     let typeLabel = "";
     let parsedOptions = [];
 
-    // --- Parse the question block content ---
+   
     if (blockContent.startsWith("MCQ:")) {
         const lines = blockContent.split("\n");
         questionText = lines[0].replace("MCQ: ", "").trim();
@@ -191,7 +191,7 @@ function renderQuestionBlock(id, blockContent, questionNumber) {
         answerText = "N/A";
     }
 
-    // --- Display Mode HTML ---
+    
     let displayHtml = `
             <div class="display-mode">
                 <h4>Question ${questionNumber}: <span style="font-size: 0.8em; color: var(--text-color-hint);"> (Type: ${typeLabel})</span></h4>
@@ -217,7 +217,7 @@ function renderQuestionBlock(id, blockContent, questionNumber) {
         `;
     questionDiv.innerHTML = displayHtml;
 
-    // --- Edit Mode HTML (hidden by default) ---
+    
     let editHtml = `
             <div class="edit-form" style="display: none;">
                 <label>Question Text:</label>
@@ -236,8 +236,7 @@ function renderQuestionBlock(id, blockContent, questionNumber) {
         }
         editHtml += `</div>`;
         editHtml += `<button type="button" class="add-option-btn" data-question-id="${id}">Add Option</button>`;
-        // editHtml += `<button type="button" class="generate-options-btn" data-question-id="${id}">Generate New Options</button>`;
-        // editHtml += `<div id="editLoadingIndicator-${id}" style="display: none;">Generating options...</div>`;
+       
     } else {
         editHtml += `<label>Answer:</label>
                         <textarea class="edit-answer-text" rows="1">${answerText}</textarea>`;
@@ -377,8 +376,8 @@ function renderQuestionBlock(id, blockContent, questionNumber) {
                         });
                         if (radioBtn.checked) {
                             correctCount++;
-                            // Find the letter corresponding to the correct option
-                            finalAnswer = String.fromCharCode(65 + finalOptions.length - 1); // This will be the letter of the last added correct option
+                            
+                            finalAnswer = String.fromCharCode(65 + finalOptions.length - 1); 
                         }
                     }
                 });
@@ -428,7 +427,6 @@ function renderQuestionBlock(id, blockContent, questionNumber) {
     }
 }
 
-// --- Helper function to render a single option input for MCQ editing ---
 function renderOptionInput(option, index, questionId) {
     return `
             <div class="option-item">
@@ -441,7 +439,7 @@ function renderOptionInput(option, index, questionId) {
         `;
 }
 
-// --- Helper function to render multiple option inputs (e.g., from AI generation) ---
+
 function renderOptionInputs(containerElement, optionsArray, questionId) {
     containerElement.innerHTML = '';
     optionsArray.forEach((option, index) => {
@@ -449,7 +447,7 @@ function renderOptionInputs(containerElement, optionsArray, questionId) {
     });
 }
 
-// --- Clear All Functionality ---
+
 document.getElementById("clearAllBtn").addEventListener("click", () => {
     document.getElementById("inputText").value = "";
     document.getElementById("questionsContainer").innerHTML = "";
@@ -457,36 +455,36 @@ document.getElementById("clearAllBtn").addEventListener("click", () => {
     document.getElementById("exportSection").style.display = "none";
     document.getElementById("exportedQuizText").value = "";
 
-    // NEW: Clear file input and display
-    if (fileInput) { // Only try to clear if the element exists
+    
+    if (fileInput) {
         fileInput.value = '';
     }
-    if (fileNameDisplay) { // Only try to clear if the element exists
+    if (fileNameDisplay) {
         fileNameDisplay.textContent = 'No file chosen';
     }
 });
 
-// --- Export Quiz Functionality ---
+
 document.getElementById("exportQuizBtn").addEventListener("click", () => {
     const questionsContainer =
         document.getElementById("questionsContainer");
     const exportSection = document.getElementById("exportSection");
     const exportedQuizText = document.getElementById("exportedQuizText");
-    const messageElement = document.getElementById("message"); // Reference message element
+    const messageElement = document.getElementById("message"); 
 
     if (questionsContainer.children.length === 0) {
-        messageElement.textContent = "No quiz questions to export!"; // Use message element for feedback
+        messageElement.textContent = "No quiz questions to export!"; 
         exportSection.style.display = "none";
         return;
     }
 
-    let quizText = "--- AI QuizMaster Export ---\n\n"; // Added header
+    let quizText = "--- AI QuizMaster Export ---\n\n"; 
     const questionBlocks = questionsContainer.querySelectorAll(".question-block");
 
     questionBlocks.forEach((qBlock, index) => {
         const type = qBlock.querySelector('.edit-question-btn').dataset.type;
         const questionText = qBlock.querySelector('.display-mode p').textContent;
-        // Adjusted to correctly get the answer by looking for the last paragraph text content
+        
         const answerParagraph = qBlock.querySelector('.display-mode p:last-of-type');
         let answerText = answerParagraph ? answerParagraph.textContent.replace('Answer: ', '') : '';
 
@@ -503,10 +501,9 @@ document.getElementById("exportQuizBtn").addEventListener("click", () => {
                     if (correctSpan) {
                         optionContent = optionContent.replace(correctSpan.textContent, '').trim();
                     }
-                    optionContent = optionContent.replace(/^[A-Z]\.\s*/, ''); // Remove leading letter and dot
+                    optionContent = optionContent.replace(/^[A-Z]\.\s*/, '');
 
-                    // Determine if this is the correct option based on the stored answerLetter
-                    // This is robust if answerText is just the letter (e.g., "A") or "A. Option Text"
+                   
                     const isCorrectOption = answerText.startsWith(optionLetter);
 
                     if (isCorrectOption) {
@@ -523,21 +520,21 @@ document.getElementById("exportQuizBtn").addEventListener("click", () => {
 
     exportedQuizText.value = quizText.trim();
     exportSection.style.display = "block";
-    exportedQuizText.select(); // Select the text for easy copying
-    exportedQuizText.focus(); // Focus the textarea
+    exportedQuizText.select(); 
+    exportedQuizText.focus();
     messageElement.textContent = "Quiz ready for export. Copy the text below!";
 });
 
-// --- Copy Exported Text Functionality ---
+
 document
     .getElementById("copyExportedTextBtn")
     .addEventListener("click", () => {
         const exportedQuizText = document.getElementById("exportedQuizText");
         exportedQuizText.select();
-        exportedQuizText.setSelectionRange(0, 99999); // For mobile devices
+        exportedQuizText.setSelectionRange(0, 99999); 
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
-            // Modern Async Clipboard API
+            
             navigator.clipboard
                 .writeText(exportedQuizText.value)
                 .then(() => {
@@ -546,23 +543,23 @@ document
                 })
                 .catch((err) => {
                     console.error("Failed to copy text: ", err);
-                    // Fallback to execCommand if clipboard.writeText fails
+                    
                     document.execCommand("copy");
                     document.getElementById("message").textContent =
                         "Copy failed. Please manually copy the text.";
                 });
         } else {
-            // Fallback for older browsers
+            
             document.execCommand("copy");
             document.getElementById("message").textContent =
                 "Quiz text copied to clipboard! (Legacy method)";
         }
     });
 
-// --- Close Export Section Functionality ---
+
 document
     .getElementById("closeExportSectionBtn")
     .addEventListener("click", () => {
         document.getElementById("exportSection").style.display = "none";
-        document.getElementById("message").textContent = ""; // Clear message when closing
+        document.getElementById("message").textContent = "";
     });

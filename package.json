@@ -2,8 +2,12 @@
   "name": "ai-quizmaster",
   "version": "1.0.0",
   "main": "index.js",
+  "homepage": "https://saniabatool.github.io/AI-QuizMaster",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d public",
+    "build": "echo \"Build script not needed for static site\""
   },
   "keywords": [],
   "author": "",
@@ -21,5 +25,9 @@
     "multer": "^2.0.0",
     "pdf-parse": "^1.1.1",
     "pdfkit": "^0.17.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
+
